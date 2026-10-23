@@ -1,0 +1,36 @@
+
+name: Multi-Job Practice
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run test
+        run: |
+          result=$((2 + 3))
+          if [ "$result" -eq 5 ]; then
+            echo "Test passed!"
+          else
+            echo "Test failed!"
+            exit 1
+          fi
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build placeholder
+        run: echo "Build job started!"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy placeholder
+        run: echo "Deploy job started!"
+
